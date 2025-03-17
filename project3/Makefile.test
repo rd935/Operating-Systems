@@ -1,0 +1,17 @@
+CC=gcc
+CFLAGS=-Wall -Wextra -pthread
+
+# Main target
+test: test.o my_vm.o
+	$(CC) $(CFLAGS) -o test test.o my_vm.o
+
+# Dependencies
+test.o: test.c my_vm.h
+	$(CC) $(CFLAGS) -c test.c -o test.o
+
+my_vm.o: my_vm.c my_vm.h
+	$(CC) $(CFLAGS) -c my_vm.c -o my_vm.o
+
+# Clean command
+clean:
+	rm -f *.o test
